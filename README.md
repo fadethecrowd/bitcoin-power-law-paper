@@ -110,4 +110,4 @@ That code license does **not** apply to:
 - the publication figures, which remain copyright of their author(s); or
 - any upstream/provider price data, which are not included here and remain subject to their own terms.
 
-No rights to witheld provider data are granted or implied by the MIT license.
+No rights to withheld provider data are granted or implied by the MIT license.
