@@ -1,0 +1,72 @@
+{
+  "sample": {
+    "first": "2010-07-17",
+    "last": "2026-08-14",
+    "n": 5873,
+    "genesis": "2009-01-03"
+  },
+  "baseline": {
+    "A": 4.1568315435e-17,
+    "B": 5.6509383734,
+    "R2": 0.9612807091,
+    "residual_sd_sample": 0.6970880735,
+    "residual_lag1_autocorrelation": 0.9969852404,
+    "naive_se_B": 0.0148014109,
+    "hac365_se_B": 0.1891599197
+  },
+  "current": {
+    "completed_close_usd": 62996.397633,
+    "trend_usd": 137876.7944,
+    "raw_residual": -0.7832829476,
+    "trailing_4y_mean": -0.2589633343,
+    "trailing_4y_sd_population": 0.3107331685,
+    "local_sigma_depth": -2.5207574437,
+    "local_demeaned_z": -1.6873628772,
+    "rms_depth": -1.9364411924
+  },
+  "current_episode": {
+    "start": "2025-11-03",
+    "duration_days": 285,
+    "minimum_date": "2026-06-30",
+    "minimum_raw_residual": -0.8165301658,
+    "minimum_local_sigma_depth": -2.7320709499,
+    "minimum_local_demeaned_z": -1.9065463368,
+    "minimum_rms_depth": -2.1069038393,
+    "cumulative_negative_area_log_days_recomputed": 136.4816866644,
+    "paper_approximation": "~137 log-days"
+  },
+  "refit": {
+    "episode_start_B": 5.703364438,
+    "delta_B": -0.0524260646,
+    "frozen_trend_at_cutoff_usd": 147378.0987,
+    "refit_absorption_log_fraction": 0.0784080757,
+    "refit_absorption_price_fraction": 0.112599109
+  },
+  "trend": {
+    "instantaneous_arithmetic_equivalent": 0.3783626886,
+    "keep_pace_1y_cagr": 0.3663130995,
+    "catch_up_1y_cagr": 1.9903752807,
+    "catch_up_2y_cagr": 1.0048860477,
+    "catch_up_3y_cagr": 0.7461474986
+  },
+  "recovery_clock": {
+    "calendar_time_cv_population": 0.8836223484,
+    "volatility_time_cv_population": 0.7401535233
+  },
+  "stochastic_reproduction_note": "The original August 2026 scratch RNG seeds were not preserved. Public stochastic scripts use publication_reconstruction_seed=20261001 and reproduce the documented method and substantive conclusion, not the exact original random draw sequence.",
+  "audited_v08_deterministic_break_outputs": {
+    "real_max_adjacent_slope_change": 13.9335,
+    "real_slope_range": 16.5848
+  },
+  "audited_original_stochastic_outputs": {
+    "moving_block_bootstrap_365_reps": 1000,
+    "moving_block_bootstrap_365_sd_B": 0.2401,
+    "moving_block_bootstrap_365_q025": 5.0466,
+    "moving_block_bootstrap_365_q975": 5.996,
+    "break_null_reps": 300,
+    "break_null_selected_K4_share": 0.997,
+    "real_max_adjacent_slope_change_percentile": 0.547,
+    "real_slope_range_percentile": 0.59
+  },
+  "publication_reconstruction_seed": 20261001
+}
