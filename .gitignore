@@ -1,0 +1,28 @@
+# Raw/provider-derived market data must not be committed.
+*.csv
+btc_power_law_paper_data_*
+data/*.json
+*.parquet
+*.feather
+*.npz
+*.pkl
+*.pickle
+
+# Known private/reconstructable data locations.
+data/raw/
+data/private/
+data/provider/
+btc-price-production.json
+*historicalPoints*.json
+
+# Local outputs and caches.
+output/
+outputs/
+.cache/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.env*
+.DS_Store
