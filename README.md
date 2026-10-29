@@ -2,6 +2,12 @@
 
 Supporting code and documentation for **Bitcoin's Price Power Law: Stability, Maturation, and a Live Test of the Scaling Hypothesis**, technical drafts v0.8 (September 2026) and v0.9 (October 2026), with research data frozen through **2026-08-14**. Version 0.9 uses the same frozen sample, time origin and model specification as v0.8.
 
+## Published papers and DOIs
+
+- **Version 0.9 (October 29, 2026):** [Zenodo publication](https://doi.org/10.5281/zenodo.23774503) — DOI: [10.5281/zenodo.23774503](https://doi.org/10.5281/zenodo.23774503).
+- **Version 0.8 (September 25, 2026):** [Zenodo publication](https://doi.org/10.5281/zenodo.22966136) — DOI: [10.5281/zenodo.22966136](https://doi.org/10.5281/zenodo.22966136).
+- **All versions (concept DOI):** [10.5281/zenodo.22966135](https://doi.org/10.5281/zenodo.22966135), which resolves to the latest published version.
+
 The paper studies the empirical relationship
 
 `ln P(t) = ln A + B ln t`
