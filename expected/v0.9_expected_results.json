@@ -1,0 +1,143 @@
+{
+ "_note": "Aggregate v0.9 verification targets. No daily provider data. Deterministic values come from v09_robustness/scripts/01_reproduce.py on the exact frozen file; simulation values from the v0.9 package with master seed 20261025 and are conditional on the declared residual-model family.",
+ "sample": {
+  "first": "2010-07-17",
+  "last": "2026-08-14",
+  "n": 5873,
+  "genesis": "2009-01-03",
+  "frozen_sha256": "ada93367320ad9c45d713650377ee683cf0b58d1ff8fb290fb72cd8b3168886f"
+ },
+ "deterministic": {
+  "post2017_B": 4.864547,
+  "rolling_B_named": {
+   "4y": {
+    "2021-12-31": 6.1819,
+    "2022-12-31": 6.5121,
+    "2023-12-31": 3.2071,
+    "2024-12-31": 1.2727,
+    "2025-12-31": 6.7198,
+    "2026-08-14": 6.9943
+   },
+   "5y": {
+    "2021-12-31": 6.3028,
+    "2022-12-31": 4.9215,
+    "2023-12-31": 4.7765,
+    "2024-12-31": 4.2004,
+    "2025-12-31": 3.2648,
+    "2026-08-14": 4.1151
+   },
+   "10y": {
+    "2021-12-31": 5.9423,
+    "2022-12-31": 5.4068,
+    "2023-12-31": 5.3922,
+    "2024-12-31": 6.1209,
+    "2025-12-31": 5.7934,
+    "2026-08-14": 5.2081
+   }
+  },
+  "rolling_5y_daily_min": [
+   3.2547,
+   "2025-12-18"
+  ],
+  "curvature_statistic": -1.757913,
+  "mean5_five_checkpoints": 4.255652,
+  "decomposition_2025": {
+   "from": "2024-12-31",
+   "to": "2025-12-31",
+   "B_from": 4.2004,
+   "B_to": 3.2648,
+   "dB": -0.9356,
+   "daily_shapley_departing": -2.0297,
+   "daily_shapley_arriving": 1.0941,
+   "two_step_drop_first": {
+    "departing": -2.9277,
+    "arriving": 1.9921
+   },
+   "two_step_add_first": {
+    "arriving": 0.6393,
+    "departing": -1.5749
+   }
+  },
+  "adf_fixed_lags": {
+   "1": -2.9401,
+   "5": -3.1663,
+   "10": -3.0353,
+   "21": -3.4263,
+   "33": -3.6131
+  },
+  "phillips_perron_arch_8_0_0": {
+   "lag11_const": -3.0416,
+   "auto_const": -3.3072,
+   "auto_lags": 34,
+   "v08_reported_unreconciled": -2.38
+  },
+  "quantile_slopes": {
+   "0.05": 5.8848,
+   "0.1": 5.8585,
+   "0.25": 5.8761,
+   "0.5": 5.8474,
+   "0.75": 5.2275,
+   "0.9": 5.01,
+   "0.95": 4.9252
+  }
+ },
+ "simulation": {
+  "screened_models": [
+   "ar0.990|cyc0.8|lam0",
+   "ar0.990|cyc0.8|lam1",
+   "ar0.995|cyc0.4|lam0",
+   "ar0.995|cyc0.4|lam1",
+   "ar0.997|cyc0.4|lam0",
+   "ar0.997|cyc0.4|lam1",
+   "ar0.998|cyc0.4|lam0",
+   "ar0.998|cyc0.4|lam1",
+   "ar0.999|cyc0.4|lam0",
+   "ar0.999|cyc0.4|lam1",
+   "frac0.9|cyc0.8|lam1",
+   "rw|cyc0.4|lam1"
+  ],
+  "n_screened_of_48": 12,
+  "principal_statistic_curv_p_range": [
+   0.137,
+   0.35
+  ],
+  "battery_adjusted_p_range": [
+   0.011,
+   0.563
+  ],
+  "battery_adjusted_p_below_005": 1,
+  "family_wide_power_max_at_D3": 0.1829,
+  "nw365_coverage_range_screened": [
+   0.29,
+   0.9867
+  ],
+  "unitroot_simulated_5pct_const_vol_range": [
+   -3.384,
+   -3.3223
+  ],
+  "unitroot_simulated_5pct_btc_vol_range": [
+   -4.2975,
+   -4.1163
+  ],
+  "compression_Aq_p_range": {
+   "symmetric": [
+    0.015,
+    0.135
+   ],
+   "skewed": [
+    0.0325,
+    0.1775
+   ]
+  },
+  "compression_Aep_E1_3_p_range": {
+   "symmetric": [
+    0.04,
+    0.2375
+   ],
+   "skewed": [
+    0.0825,
+    0.28
+   ]
+  }
+ }
+}

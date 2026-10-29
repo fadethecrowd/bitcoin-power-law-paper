@@ -1,6 +1,6 @@
-# Bitcoin's Price Power Law — v0.8 reproducibility materials
+# Bitcoin's Price Power Law — reproducibility materials (v0.8 and v0.9)
 
-Supporting code and documentation for **Bitcoin's Price Power Law: Stability, Maturation, and a Live Test of the Scaling Hypothesis**, technical draft v0.8, with research data frozen through **2026-08-14**.
+Supporting code and documentation for **Bitcoin's Price Power Law: Stability, Maturation, and a Live Test of the Scaling Hypothesis**, technical drafts v0.8 (September 2026) and v0.9 (October 2026), with research data frozen through **2026-08-14**. Version 0.9 uses the same frozen sample, time origin and model specification as v0.8.
 
 The paper studies the empirical relationship
 
@@ -67,34 +67,54 @@ The original August 2026 scratch research scripts were not preserved. The public
 
 The deterministic implementation has been checked against the exact private frozen file. The original stochastic RNG seeds do not survive, so the public Monte Carlo script uses a new, explicitly named publication-reconstruction seed (`20261001`). The repository therefore distinguishes exact deterministic reproduction from stochastic method replication. See [`docs/REPRODUCIBILITY_SCOPE.md`](docs/REPRODUCIBILITY_SCOPE.md).
 
-### Phillips-Perron reconstruction note
+### Phillips-Perron: replaced in v0.9 (v0.8 value unreconciled)
 
-The original Phillips-Perron scratch implementation did not survive. A standard reconstructed implementation did not reproduce the v0.8 reported statistic (`Zt = -2.380`). Rather than publish a contradictory number as if it were an exact reconstruction, the public stationarity script leaves PP uncomputed, records the v0.8 reported value, and marks the discrepancy unresolved for a later re-audit/revision.
+The original Phillips-Perron scratch implementation did not survive, and no standard implementation reproduces the v0.8 reported statistic (`Zt = -2.380`). Version 0.9 replaces it with values computed by `arch` 8.0.0 (`PhillipsPerron(trend="c")`, Bartlett kernel) on the exact frozen file: **-3.0416 at 11 lags** and **-3.3072 at the automatic lag (34)**. On daily data with no constant, a constant, or a constant and trend, at lags between 1 and 365 and the automatic lag, the statistic lies between -2.98 and -3.61; on weekly and month-end samples with a constant, between -2.80 and -3.43. None reproduces -2.380, so the v0.8 value remains unreconciled and is withdrawn. `scripts/stationarity_checks.py` now computes PP and reports the archived v0.8 value alongside it.
+
+## Version 0.9 robustness package
+
+[`v09_robustness/`](v09_robustness/) contains the scripts behind the new v0.9 analyses: a declared family of persistent residual models, calibrated tests of rolling-window, post-2017 and curvature exponent statistics, power against a declining exponent, coverage of the intervals for `B`, simulated unit-root critical values and the compression of cycle extremes. It has its own README, pinned requirements (Python 3.13, `arch` 8.0.0), fixed seeds and tests. Its outputs are aggregate statistics only and follow the data policy below.
+
+```bash
+cd v09_robustness
+pip install -r requirements.txt
+python run_all.py /path/to/btc_daily.csv            # runtime varies; one clean two-worker rerun took about 42 minutes
+python -m pytest -q tests
+```
+
+With the exact frozen CSV every deterministic number matches the paper and every simulation reproduces bit for bit with the pinned requirements; with independently obtained data add `--allow-different-sample`.
 
 ## Source provenance
 
 Review of the production ingestion history strongly supports an inferred source composition of:
 
-- CryptoCompare / CoinDesk Data through 2026-01-10;
-- CoinGecko from 2026-01-11 through the paper cutoff.
+- [CryptoCompare / CoinDesk Data](https://www.cryptocompare.com) through 2026-01-10;
+- [CoinGecko](https://www.coingecko.com) from 2026-01-11 through the paper cutoff.
+
+**Price-data credit:** Earlier BTC/USD observations: [CryptoCompare / CoinDesk Data](https://www.cryptocompare.com). For observations dated 2026-01-11 onward: [Data provided by CoinGecko](https://www.coingecko.com). This credit follows the inferred source composition and does not establish row-by-row provenance.
 
 The attribution is intentionally described as **inferred rather than cryptographically proven**. See [`docs/PROVENANCE.md`](docs/PROVENANCE.md).
 
 ## Repository contents
 
+- [`paper/Bitcoin_Power_Law_Technical_Paper_v0.9.pdf`](paper/Bitcoin_Power_Law_Technical_Paper_v0.9.pdf) — the v0.9 paper
 - [`paper/Bitcoin_Power_Law_Technical_Paper_v0.8.pdf`](paper/Bitcoin_Power_Law_Technical_Paper_v0.8.pdf) — the v0.8 circulation paper
+- [`v09_robustness/`](v09_robustness/) — v0.9 robustness package (scripts, settings, aggregate outputs, figures, tests)
 - [`figures/`](figures/) — publication figure images only; no figure-source daily tables
 - [`scripts/reproduce_v08.py`](scripts/reproduce_v08.py) — deterministic reproduction calculations
 - [`scripts/stochastic_checks.py`](scripts/stochastic_checks.py) — reconstructed bootstrap, structural-break null and AR(1) scale-invariance checks
-- [`scripts/stationarity_checks.py`](scripts/stationarity_checks.py) — ADF / Engle-Granger-style residual diagnostics; the unreproduced v0.8 Phillips-Perron value is documented but intentionally not recomputed
+- [`scripts/stationarity_checks.py`](scripts/stationarity_checks.py) — ADF and Phillips-Perron residual diagnostics with residual-based critical values; reports the unreproduced v0.8 PP value alongside the v0.9 replacement
 - [`scripts/verify_exact_frozen_file.py`](scripts/verify_exact_frozen_file.py) — exact frozen-file SHA-256 check
-- [`expected/v0.8_expected_results.json`](expected/v0.8_expected_results.json) — aggregate audited targets only; no daily provider data
+- [`expected/v0.8_expected_results.json`](expected/v0.8_expected_results.json) — audited v0.8 verification targets: aggregate statistics plus two single-day values the paper also prints (the 2026-08-14 completed close and the 2026-06-30 episode-minimum residual), stored at full precision for testing; no daily series
+- [`expected/v0.9_expected_results.json`](expected/v0.9_expected_results.json) — aggregate v0.9 targets (exponent-stability statistics, PP replacement values, calibration summaries)
 - [`data/SCHEMA.md`](data/SCHEMA.md) — input schema
 - [`docs/DATA_AVAILABILITY.md`](docs/DATA_AVAILABILITY.md) — data-withholding and user-supplied-data policy
 - [`docs/PROVENANCE.md`](docs/PROVENANCE.md) — research/data provenance
 - [`docs/REPRODUCIBILITY_SCOPE.md`](docs/REPRODUCIBILITY_SCOPE.md) — exact conventions and limitations
 
 ## Important interpretation limits
+
+The v0.9 simulation results (calibrated p-values, power, interval coverage, unit-root critical values) are conditional on the declared residual-model family, which imposes a four-year stochastic cycle by design; they are not independent empirical findings and do not establish that such a cycle exists.
 
 The repository reproduces the principal deterministic v0.8 calculations and reconstructs the documented stochastic methods. Some secondary v0.8 diagnostics are explicitly outside the reconstructed public implementation; see `docs/REPRODUCIBILITY_SCOPE.md`. It does not establish that the Bitcoin Power Law is immutable, that its numerical exponent is invariant to the time origin, that residuals are cleanly stationary under every specification, that the structural-break exercise proves structural change is impossible, or that historical episode recovery guarantees future recovery.
 
