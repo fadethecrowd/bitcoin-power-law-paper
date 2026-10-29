@@ -1,0 +1,31 @@
+{
+  "design": "constant drift + random-walk deviations with observed volatility profile; daily frozen grid",
+  "n_sims": 1000,
+  "drift_per_day": 0.002394,
+  "fitted_B_median": 6.354,
+  "fitted_B_90pct": [
+    3.089,
+    9.615
+  ],
+  "R2_median": 0.888,
+  "R2_90pct": [
+    0.529,
+    0.97
+  ],
+  "share_R2_above_observed": 0.106,
+  "observed_R2": 0.9613,
+  "baquero_menezes_fig1b": {
+    "R2_median": 0.897,
+    "R2_90pct": [
+      0.7,
+      0.97
+    ],
+    "share_above_bitcoin": 0.14,
+    "B_median": 6.1,
+    "B_90pct": [
+      3.4,
+      9.2
+    ],
+    "sample": "weekly, 2011-2026"
+  }
+}
