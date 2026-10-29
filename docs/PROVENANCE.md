@@ -25,6 +25,8 @@ The frozen series appears to be stitched from two upstream data paths:
 - CryptoCompare / CoinDesk Data through 2026-01-10;
 - CoinGecko from 2026-01-11 through the 2026-08-14 research cutoff.
 
+**Source credit (inferred):** [CryptoCompare / CoinDesk Data](https://www.cryptocompare.com) for observations through 2026-01-10; [Data provided by CoinGecko](https://www.coingecko.com) for 2026-01-11 through the cutoff.
+
 This attribution is **inferred, not cryptographically proven**. It is strongly supported by the production ingestion code/history, file and output paths, row counts, and a clear precision-regime change beginning on 2026-01-11. The repository therefore describes the source boundary as an inference rather than claiming chain-of-custody proof for each row.
 
 The production dataset continued updating after the August 14 research cutoff. Those later observations are outside the v0.8 research sample and must not enter a v0.8 reproduction.

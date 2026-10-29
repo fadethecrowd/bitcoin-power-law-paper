@@ -1,5 +1,7 @@
 # Reproducibility scope and conventions
 
+This document covers the v0.8 reconstruction scripts in `scripts/`. The v0.9 robustness analyses are in `v09_robustness/`, whose README describes their conventions, settings and seeds; every v0.9 simulation reproduces bit for bit with the exact frozen file and the pinned requirements.
+
 This repository separates three different ideas that are often conflated.
 
 ## 1. Exact frozen-file verification
@@ -56,9 +58,9 @@ The surviving paper/audit record contains several secondary results whose origin
 
 These omissions do not imply those paper values are false; they mean the surviving materials are insufficient to claim an exact public implementation of those particular calculations.
 
-## 5. Phillips-Perron discrepancy
+## 5. Phillips-Perron discrepancy (value replaced in v0.9; v0.8 value unreconciled)
 
-The v0.8 paper reports a Phillips-Perron `Zt = -2.380` that does not reject a unit root. The original PP scratch code was not preserved. During publication reconstruction, a standard public implementation produced a materially different statistic. Because the implementation choice behind the archived value cannot now be established, `scripts/stationarity_checks.py` **does not recompute PP**. It reports the archived v0.8 value and marks the discrepancy unresolved. A future paper revision/re-audit should settle this explicitly.
+The v0.8 paper reports a Phillips-Perron `Zt = -2.380` that does not reject a unit root. The original PP scratch code was not preserved, and no standard specification reproduces that value. Version 0.9 replaces it with `arch` 8.0.0 values on the exact frozen file (`PhillipsPerron(trend="c")`, Bartlett kernel): -3.0416 at 11 lags and -3.3072 at the automatic lag (34). `scripts/stationarity_checks.py` computes both and records the archived v0.8 value as unreconciled. Neither replacement rejects at residual-based 5% critical values, so the v0.8 qualitative conclusion for PP is unchanged.
 
 ## 6. Different-sample mode
 

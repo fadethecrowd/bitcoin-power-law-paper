@@ -1,0 +1,25 @@
+{
+  "rho": 0.99699,
+  "sigmas": [
+    0.85,
+    0.55,
+    0.31
+  ],
+  "reps": 4000,
+  "seed": 20261001,
+  "median_days_same_raw_gap": [
+    202.0,
+    305.5,
+    486.5
+  ],
+  "median_days_same_standardized_gap": [
+    390.0,
+    394.0,
+    405.0
+  ],
+  "v08_reported_standardized": [
+    398,
+    393,
+    392
+  ]
+}

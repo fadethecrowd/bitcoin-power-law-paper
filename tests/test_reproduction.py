@@ -74,3 +74,17 @@ def test_different_sample_helpers_do_not_require_fixed_end_date(frozen):
     eb=mod.expanding_B(short)
     assert '2026-08-14' not in eb
     assert '2025-12-31' in eb
+
+
+def test_phillips_perron_v09(frozen_csv):
+    """v0.9 replacement for the unreproduced v0.8 PP value (-2.380); requires arch==8.0.0."""
+    pytest.importorskip('arch')
+    import importlib.util as iu
+    sp=iu.spec_from_file_location('stationarity_checks',ROOT/'scripts'/'stationarity_checks.py')
+    sys.path.insert(0,str(ROOT/'scripts'))
+    st=iu.module_from_spec(sp);sp.loader.exec_module(st)
+    df=mod.load_data(frozen_csv);f=mod.fit_powerlaw(df)
+    pp=st.phillips_perron(f.residuals)
+    assert round(pp['Zt_lag11'],4)==-3.0416
+    assert round(pp['Zt_auto'],4)==-3.3072
+    assert pp['auto_lags']==34
