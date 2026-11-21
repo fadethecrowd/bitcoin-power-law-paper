@@ -74,9 +74,14 @@ def simulate(model_name: str, *, seed: int, forecast_days: int,
     period=4*365.25
     decay=0.5**(1/(3*period))
     coeff=decay*np.exp(2j*np.pi/period)
+    # Draw the stationary initial state from a separate fixed stream.
+    # Drawing it after n cycle innovations would make its value depend on
+    # how many *future* days the caller requested (horizon leakage).
+    rng_initial=np.random.default_rng(np.random.SeedSequence([seed,9147]))
+    z0=(rng_initial.normal()+1j*rng_initial.normal())*vol[0]/np.sqrt(1-decay**2)
     z=rng_c.normal(size=(n,2))
     ec=(z[:,0]+1j*z[:,1])*vol
-    c=lfilter([1],[1,-coeff],ec)*cycle_scale
+    c=lfilter([1],[1,-coeff],ec,zi=[coeff*z0])[0]*cycle_scale
     residual=np.sqrt(1-m.cycle_weight)*p + np.sqrt(m.cycle_weight)*c.real
     return residual[warmup_days-1:].astype(float)
 
