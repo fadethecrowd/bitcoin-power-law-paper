@@ -4,6 +4,14 @@
 
 **Published baseline (IMMUTABLE):** v0.9, 2026-10-29, DOI 10.5281/zenodo.23774503. Original 5,873 UTC closes, 2010-07-17 to 2026-08-14; time origin Bitcoin genesis 2009-01-03. Published free-intercept OLS coefficients A=4.1568315435e-17, B=5.6509383734, sample residual SD=0.6970880735. Private frozen dataset SHA-256: `ada93367320ad9c45d713650377ee683cf0b58d1ff8fb290fb72cd8b3168886f`. Dashboard calibration B=5.69705 is a **different model** and must not be substituted. No daily licensed prices/residuals are to be committed.
 
+## Scope priority clarified 2026-11-21
+
+**Primary scientific objective:** identify the statistical distinguishability of a change in the underlying local log-price/log-age growth exponent from a constant exponent plus highly persistent deviations. Inference about growth-law validity and the identifiability of structural change is the paper's central claim. No retirement-dashboard analysis is part of this research.
+
+**Secondary bounded methodological audit:** real-time P10 vintage testing is retained only to assess whether retrospective lower-band statements in published v0.9 suffer from hindsight conditioning. It is not intended to design a retirement forecast, optimize P10, or turn this paper into a downside forecasting paper. Reserve detailed predictive-quantile calibration as separate follow-up if it becomes a substantial independent workstream.
+
+**Important experimental distinction:** a fixed-horizon simple-versus-simple optimal detector with *known* onset, alternative and noise parameters is a useful idealized benchmark for detection power, but is not a calibrated sequential alarm. Report its assumptions and compare it to realistic detectors, without treating the known-alternative result as a universal upper bound for misspecified or composite tests.
+
 ## Decision and hypotheses
 
 We **do not assume** that a 12–24 month early-warning system is feasible. A decline in expanding-window B is not in itself evidence of a change in the *local* forward growth exponent. We will quantify how slowly genuine changes can be distinguished from persistent residual deviations and, separately, whether vintage P10 is calibrated as a forecast quantile.
