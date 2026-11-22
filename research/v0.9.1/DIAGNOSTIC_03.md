@@ -41,3 +41,10 @@ These findings concern **the 180-day EWMA forecast-error rule**, not all possibl
 5. Only after these gates assess implications for paper wording.
 
 Raw licensed prices, synthetic daily histories, and individual-price-reconstructing output are **not** committed to the repository.
+
+## Follow-up robustness check, same day
+A second, smaller **600 calibration / 600 evaluation paths per model** run compared two predeclared future-volatility assumptions: (a) 2025 daily log-return volatility held fixed (0.02192479), and (b) the mean of completed 2023–25 annual volatilities held fixed (0.02415699). The common worst-family threshold was identical in these same-seed runs at -2.7409 because a lambda=0 model determined it; D=1 ten-year family-threshold power ranged 0–9% for either assumption, and model-specific D=1 ten-year power ranged 6.0–15.5% (2025) versus 6.0–15.17% (three-year mean). This is a limited sensitivity comparison, not evidence that volatility forecasts do not matter more generally.
+
+**Critical size qualification:** in both 600-path runs, the observed *maximum* family-threshold ten-year null alarm share was 6.83%. The 2,000-path run yielded 3.9% maximum. This inconsistency is compatible with Monte Carlo variation but means that **even the across-family threshold must not yet be described as empirically proven to control the false alarm probability at 5%**. A larger independently seeded calibration/evaluation test, or an explicit conservative threshold with a confidence-bound size guarantee, is required.
+
+A downloadable reproducibility bundle accompanying this research turn contains the local Python simulation runner, unit tests, and aggregate results; the GitHub report alone is not a full executable reproduction of the new experiment. The original private licensed daily series was not included.
